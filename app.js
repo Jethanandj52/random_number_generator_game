@@ -45,10 +45,16 @@ function submit(){
                        dicision.innerHTML=`Please Try Agrain  `
                 } else {
                      dicision.innerHTML=`You have no more lives....<br> The random number is:${random}`
-                }
-
-                   
+                    resetBtn.style.display="block"
+                    submitBtn.style.display="none"
+                }     
             }
-       guessInput.valu
+       guessInput.value=" "
        
 }
+function reset(){
+    window.location.reload();
+   
+
+}
+ 
