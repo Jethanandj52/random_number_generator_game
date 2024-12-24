@@ -1,4 +1,4 @@
-let heartIcon=document.getElementById("heart")
+  let heartIcon=document.getElementById("heart")
 
 function* makeRangeIterator(start = 0, end = Infinity, step = 1) {
     let iterationCount = 0;
@@ -27,31 +27,33 @@ let random= Math.floor(Math.random()*11)
 
  let live=3
 
-function submit(){
-       
-            let guessInput = document.getElementById("guess").value;
-            let dicision= document.getElementById("dicision")
-         // Get user input
-        if(guessInput=== ""){
-            alert("Please enter a number")
+
+function submit() {
+    let guessInput = document.getElementById("guess");
+    let dicision = document.getElementById("dicision");
+    let userGuess = Number(guessInput.value); // Convert input to a number
+
+    if (guessInput.value === "") {
+        alert("Please enter a number");
+    } else if (userGuess === random) {
+        dicision.innerHTML = `Congratulations, you win!`;
+    } else {
+        live--; // Decrease lives
+        heartIcon.removeChild(heartIcon.lastChild); // Remove one heart
+        if (live > 0) {
+            dicision.innerHTML = `Please try again.`;
+        } else {
+            dicision.innerHTML = `You have no more lives....<br> The random number is: ${random}`;
+            resetBtn.style.display = "block";
+            submitBtn.style.display = "none";
         }
-        else  if (guessInput === random) {
-                 dicision.innerHTML=`Congratulation you win `
-            } 
-            else {
-                live--; // Decrease lives
-                heartIcon.removeChild(heartIcon.lastChild); // Remove one heart
-                if (live > 0) {
-                       dicision.innerHTML=`Please Try Agrain  `
-                } else {
-                     dicision.innerHTML=`You have no more lives....<br> The random number is:${random}`
-                    resetBtn.style.display="block"
-                    submitBtn.style.display="none"
-                }     
-            }
-       guessInput.value=" "
-       
+    }
+
+    // Clear the input field after submission
+    guessInput.value = ""; 
 }
+
+   
 function reset(){
     window.location.reload();
    
